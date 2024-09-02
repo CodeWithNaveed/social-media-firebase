@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook-like Homepage</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">MySocial</div>
+            <input type="text" placeholder="Search..." class="search-box">
+            <nav class="nav">
+                <a href="#" class="active">Home</a>
+                <a href="#" class="active">Friends</a>
+                <a href="#" class="active">Messages</a>
+                <a href="#" class="active">Notifications</a>
+            </nav>
+            <div class="user-menu">
+                <img src="https://picsum.photos/50/50" alt="Profile Picture" class="profile-pic">
+                <a href="#">Profile</a>
+            </div>
+        </div>
+
+        <button id="logoutButton">Logout</button>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Friends List</h2>
+            <ul>
+                <li>John Doe</li>
+                <li>Jane Smith</li>
+                <li>Emily Johnson</li>
+            </ul>
+            <h2>Groups</h2>
+            <ul>
+                <li>Family</li>
+                <li>Work</li>
+                <li>Hobbies</li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="post-form">
+                <textarea placeholder="What's on your mind?" rows="3"></textarea>
+                <button>Post</button>
+            </div>
+
+            <div class="feed">
+                <div class="post">
+                    <div class="post-header">
+                        <img src="https://picsum.photos/50/50" alt="Profile Picture" class="profile-pic">
+                        <h2>Jane Doe</h2>
+                    </div>
+                    <p>Just enjoyed a fantastic day at the park!</p>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <img src="https://picsum.photos/50/50" alt="Profile Picture" class="profile-pic">
+                        <h2>John Smith</h2>
+                    </div>
+                    <p>Check out this new movie I watched last night. It was amazing!</p>
+                </div>
+            </div>
+        </main>
+
+        <aside class="right-sidebar">
+            <h2>Sponsored</h2>
+            <div class="sponsor">
+                <p>Ad Content Here</p>
+            </div>
+            <h2>Events</h2>
+            <div class="event">
+                <p>Upcoming Event 1</p>
+            </div>
+            <div class="event">
+                <p>Upcoming Event 2</p>
+            </div>
+        </aside>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 MySocial</p>
+    </footer>
+
+
+    <script src="../firebase.js" type="module"></script>
+    <script src="./home.js" type="module"></script>
+</body>
+
+</html>
+
+
+<a href="../login/login.html"></a>
