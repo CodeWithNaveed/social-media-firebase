@@ -1,72 +1,40 @@
-import {
-    auth,
-    signInWithEmailAndPassword,
-    signInWithPopup,
-    GoogleAuthProvider,
-    googleprovider,
-    onAuthStateChanged,
-} from "../firebase.js";
+import { auth, loginFormForUser, loginByGoogle} from "../firebase.js";
 
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        console.log('user is login');
-          window.location.href = '../social media/home.html';
-    } else {
-        console.log("user is logout");
-    }
-});
-
-document.getElementById('loginButton').addEventListener('click', (e) => {
+// --------------------------------Login button-----------------------------------------------
+document.getElementById('loginButton').addEventListener('click', async (e) => {
     e.preventDefault();
-    const email = document.getElementById('exampleInputEmail1');
-    const password = document.getElementById('exampleInputPassword1');
+    const email = document.getElementById('exampleInputEmail1').value;
+    const password = document.getElementById('exampleInputPassword1').value;
 
-    signInWithEmailAndPassword(auth, email.value, password.value)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            alert(`user login successfully`);
-            window.location.href = '../social media/home.html';
-        })
-        .catch((error) => {
-            if (!email.value || !password.value) {
-                alert('Please fill in all fields');
-                return;
-            }
-            if (error.code === 'auth/invalid-email') {
-                alert('Please enter a valid email address');
-                email.value = '';
-                return;
-            }
-            if (error.code === 'auth/wrong-password') {
-                alert('Wrong password');
-                password.value = '';
-                return;
-            }
-            if (error.code === 'auth/invalid-credential') {
-                alert('User not found');
-                email.value = '';
-                password.value = '';
-                return;
-            }
-        });
+    try {
+        const uid = await loginFormForUser(auth, email, password)
+        // console.log(uid, "==>> uid");
+        window.location.href = '../social media/home.html';
+    }
+    catch (error) {
+        console.log(error.message);
+        if(!email || !password) {
+            alert('Please enter email and password first.');
+            return;
+        }
+        if(error.code === 'auth/invalid-credential') {
+            alert('Please signup first.');
+            email.value = '';
+            password.value = '';
+            return;
+        }
+    }
 })
 
-document.getElementById('loginWithGoogle').addEventListener('click', (e) => {
+// --------------------------------google login button----------------------------------------
+document.getElementById('loginWithGoogle').addEventListener('click', async (e) => {
     e.preventDefault();
 
-    signInWithPopup(auth, googleprovider)
-        .then((result) => {
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
-            const user = result.user;
-            console.log("token", token);
-            console.log("user", user);
-            alert('Log in successful');
-            window.location.href = '../social media/home.html';
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const credential = GoogleAuthProvider.credentialFromError(error);
-            console.log("error", errorCode, credential);
-        });
+    try {
+        const uidByGoogle = await loginByGoogle(auth);
+        window.location.href = '../social media/home.html';
+    }
+    catch (error) {
+        console.log(error.message);
+    }
 })

@@ -4,88 +4,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facebook-like Homepage</title>
+    <title>MediaBook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="home.css">
 </head>
 
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="logo">MySocial</div>
-            <input type="text" placeholder="Search..." class="search-box">
-            <nav class="nav">
-                <a href="#" class="active">Home</a>
-                <a href="#" class="active">Friends</a>
-                <a href="#" class="active">Messages</a>
-                <a href="#" class="active">Notifications</a>
-            </nav>
-            <div class="user-menu">
-                <img src="https://picsum.photos/50/50" alt="Profile Picture" class="profile-pic">
-                <a href="#">Profile</a>
+    <div class="header">
+        <div class="logo"><strong>M</strong>edia<strong>B</strong>ook</div>
+
+        <div class="user-menu">
+            <img src="https://picsum.photos/50/50" alt="Profile Picture" class="profile-pic">
+            <a href="#" class="active">Profile</a>
+        </div>
+
+        <input type="text" placeholder="Search..." class="search-box">
+        <nav class="nav">
+            <a href="#" class="active">Home</a>
+            <a href="#" class="active">Friends</a>
+            <a href="#" class="active">Messages</a>
+            <a href="#" class="active">Notifications</a>
+        </nav>
+
+        <button id="logoutButton">Logout</button>
+    </div>
+
+    <div class="container">
+        <div class="userInformation">
+            <img src="https://picsum.photos/50/50" class="userImage">
+
+            <div class="userInformationContent">
+                <h5 class="userName">Alexender Schidmt</h5>
+
+                <span class="userProfession">UI/UX Designer</span>
+
+                <p class="userDescription">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+            </div>
+
+            <div class="userInformationButtons">
+                <button class="button">Edit</button>
+                <button class="button">save</button>
             </div>
         </div>
 
-        <button id="logoutButton">Logout</button>
-    </header>
-
-    <div class="container">
-        <aside class="sidebar">
-            <h2>Friends List</h2>
-            <ul>
-                <li>John Doe</li>
-                <li>Jane Smith</li>
-                <li>Emily Johnson</li>
-            </ul>
-            <h2>Groups</h2>
-            <ul>
-                <li>Family</li>
-                <li>Work</li>
-                <li>Hobbies</li>
-            </ul>
-        </aside>
-
         <main class="main-content">
             <div class="post-form">
-                <textarea placeholder="What's on your mind?" rows="3"></textarea>
-                <button>Post</button>
+                <textarea placeholder="What's on your mind?" rows="3" id="postText"></textarea>
+                <span class="post-form-photofile-button">
+                    <input type="file" id="photosUploadButton">
+                    <button class="button" id="postButton">Post</button>
+                </span>
             </div>
 
             <div class="feed">
-                <div class="post">
+                <li class="post">
                     <div class="post-header">
                         <img src="https://picsum.photos/50/50" alt="Profile Picture" class="profile-pic">
                         <h2>Jane Doe</h2>
                     </div>
-                    <p>Just enjoyed a fantastic day at the park!</p>
-                </div>
+                    <br>
+                    <p class="post-text">Just enjoyed a fantastic day at the park!</p>
+                    <img src="https://picsum.photos/500/300" alt="Post Image" class="post-image">
+                    <div class="post-footer">
+                        <button class="button"><i class="fa-solid fa-thumbs-up"></i>Like</button>
+                        <button class="button"><i class="fa-regular fa-comment-dots"></i>Comment</button>
+                        <button class="button"><i class="fa-solid fa-share"></i>Share</button>
+                    </div>
+                </li>
 
-                <div class="post">
+                <li class="post">
                     <div class="post-header">
                         <img src="https://picsum.photos/50/50" alt="Profile Picture" class="profile-pic">
-                        <h2>John Smith</h2>
+                        <h2>Jane Doe</h2>
                     </div>
-                    <p>Check out this new movie I watched last night. It was amazing!</p>
-                </div>
+                    <br>
+                    <p class="post-text">Just enjoyed a fantastic day at the park!</p>
+                    <img src="https://picsum.photos/500/300" alt="Post Image">
+                    <div class="post-footer">
+                        <button class="button"><i class="fa-solid fa-thumbs-up"></i>Like</button>
+                        <button class="button"><i class="fa-regular fa-comment-dots"></i>Comment</button>
+                        <button class="button"><i class="fa-solid fa-share"></i>Share</button>
+                    </div>
+                </li>
+
             </div>
         </main>
 
         <aside class="right-sidebar">
             <h2>Sponsored</h2>
-            <div class="sponsor">
-                <p>Ad Content Here</p>
-            </div>
-            <h2>Events</h2>
-            <div class="event">
-                <p>Upcoming Event 1</p>
-            </div>
-            <div class="event">
-                <p>Upcoming Event 2</p>
+
+            <div class="pic-ctn">
+                <img src="https://picsum.photos/200/300?t=1" alt="" class="pic">
+                <img src="https://picsum.photos/200/300?t=2" alt="" class="pic">
+                <img src="https://picsum.photos/200/300?t=3" alt="" class="pic">
+                <img src="https://picsum.photos/200/300?t=4" alt="" class="pic">
+                <img src="https://picsum.photos/200/300?t=5" alt="" class="pic">
             </div>
         </aside>
     </div>
 
     <footer class="footer">
-        <p>&copy; 2024 MySocial</p>
+        <p>&copy; 2024 developed and designed by: 'Naveed Ali Abbasi'</p>
     </footer>
 
 
@@ -94,6 +118,3 @@
 </body>
 
 </html>
-
-
-<a href="../login/login.html"></a>
