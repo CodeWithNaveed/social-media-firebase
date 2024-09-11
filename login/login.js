@@ -9,7 +9,7 @@ document.getElementById('loginButton').addEventListener('click', async (e) => {
     try {
         const uid = await loginFormForUser(auth, email, password)
         // console.log(uid, "==>> uid");
-        window.location.href = '../social media/index.html';
+        window.location.href = '../social media/404.html';
     }
     catch (error) {
         console.log(error.message);
@@ -32,7 +32,7 @@ document.getElementById('loginWithGoogle').addEventListener('click', async (e) =
 
     try {
         const uidByGoogle = await loginByGoogle(auth);
-        window.location.href = '../social media/index.html';
+        window.location.href = '../social media/404.html';
     }
     catch (error) {
         console.log(error.message);
