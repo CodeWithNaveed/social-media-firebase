@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, addDoc, collection, query, where, getDocs, getDoc, onSnapshot, } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyATTRzqGgNVcI8cyE9TzJndclQ9AQb6LJI",
@@ -61,15 +62,54 @@ const logoutButton = async (auth) => {
     }
 }
 
-
-const saveDataOfUserInFirebase = async (collectionName, uid, data) => {
+const saveDataOfUserInFirebase = async (collectionName, data) => {
     try {
-        await setDoc(doc(db, collectionName, uid.toString()), data);
-    } catch (error) {
-        console.log(error)
+        const docRef = await addDoc(collection(db, collectionName), data);
+        console.log("Document written with ID: ", docRef.id + " " + data.Text);
+    }
+    catch (error) {
         console.log(error.message)
     }
 }
+
+
+ 
+ 
+ 
+   
+    
+
+
+
+// const saveDataOfUserInFirebase = async (collectionName, uid, data) => {
+//     try {
+//         await setDoc(doc(db, collectionName, uid), data);
+//     }
+//     catch (error) {
+//         console.log(error.message)
+//     }
+//     // const userMultiplePostSaver = await setDoc(doc(db, collectionName, uid), data);
+// }
+
+// const getMultipleDataFromFirebase = async (collectionName) => {
+
+//     try {
+//         const q = query(collection(db, collectionName))  //, where("capital", "==", true));
+//         const dataOfPost = []
+//         const querySnapshot = await getDocs(q);
+//         querySnapshot.forEach((doc) => {
+//             // doc.data() is never undefined for query doc snapshots
+//             // console.log(doc.id, " => ", doc.data().postText);
+//             dataOfPost.push(doc.data().postText.toString())
+//         });
+
+//         // return data for our function
+//         return dataOfPost[0]
+//     }
+//     catch (error) {
+//         console.log(error.message)
+//     }
+// }
 
 
 export {
@@ -81,5 +121,10 @@ export {
     loginByGoogle,
     onAuthStateChanged,
     logoutButton,
-    saveDataOfUserInFirebase
+    saveDataOfUserInFirebase,
+    db,
+    doc,
+    collection,
+    getDoc, 
+    onSnapshot,
 };
