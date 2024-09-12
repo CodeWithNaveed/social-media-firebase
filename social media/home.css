@@ -220,18 +220,21 @@ body {
 /* -----------------------------Sidebar-------------------------------- */
 
 .right-sidebar {
-    height: 555px; 
-    width: 204px;
+    position: relative;
+    padding: 10px;
+    height: 600px; 
+    width: 304px;
     background: #b8b7b776;
     border-radius: 5px;
 }
 
 
 .pic {
-    position: fixed;
+    position: absolute;
+    width: 94%;
+    height: 88%;
     margin-top: 20px;
-    width: 204px;
-    height: 68%;
+    border-radius: 5px;
     opacity: 0;
     animation: display 10s infinite;
 }
