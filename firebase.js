@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import { getFirestore, doc, setDoc, addDoc, collection, query, where, getDocs, getDoc, onSnapshot, } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, addDoc, collection, query, where, getDocs, getDoc, onSnapshot, serverTimestamp, orderBy } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL,} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
 
 
 const firebaseConfig = {
@@ -18,7 +19,9 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleprovider = new GoogleAuthProvider();
 const db = getFirestore(app);
+const storage = getStorage(app);
 
+// firebase functions
 const signupFormForUser = async (auth, email, password) => {
     console.log(email, password)
 
@@ -65,52 +68,11 @@ const logoutButton = async (auth) => {
 const saveDataOfUserInFirebase = async (collectionName, data) => {
     try {
         const docRef = await addDoc(collection(db, collectionName), data);
-        console.log("Document written with ID: ", docRef.id + " " + data.Text);
     }
     catch (error) {
         console.log(error.message)
     }
 }
-
-
- 
- 
- 
-   
-    
-
-
-
-// const saveDataOfUserInFirebase = async (collectionName, uid, data) => {
-//     try {
-//         await setDoc(doc(db, collectionName, uid), data);
-//     }
-//     catch (error) {
-//         console.log(error.message)
-//     }
-//     // const userMultiplePostSaver = await setDoc(doc(db, collectionName, uid), data);
-// }
-
-// const getMultipleDataFromFirebase = async (collectionName) => {
-
-//     try {
-//         const q = query(collection(db, collectionName))  //, where("capital", "==", true));
-//         const dataOfPost = []
-//         const querySnapshot = await getDocs(q);
-//         querySnapshot.forEach((doc) => {
-//             // doc.data() is never undefined for query doc snapshots
-//             // console.log(doc.id, " => ", doc.data().postText);
-//             dataOfPost.push(doc.data().postText.toString())
-//         });
-
-//         // return data for our function
-//         return dataOfPost[0]
-//     }
-//     catch (error) {
-//         console.log(error.message)
-//     }
-// }
-
 
 export {
     app,
@@ -127,4 +89,12 @@ export {
     collection,
     getDoc, 
     onSnapshot,
+    serverTimestamp,
+    query, 
+    orderBy, 
+    storage,
+    getStorage,
+    ref,
+    uploadBytesResumable, 
+    getDownloadURL,
 };
