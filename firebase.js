@@ -65,7 +65,7 @@ const logoutButton = async (auth) => {
     }
 }
 
-const saveDataOfUserInFirebase = async (collectionName, data) => {
+const saveDataOfPostINFirebaseFirestore = async (collectionName, data) => {
     try {
         const docRef = await addDoc(collection(db, collectionName), data);
     }
@@ -83,7 +83,7 @@ export {
     loginByGoogle,
     onAuthStateChanged,
     logoutButton,
-    saveDataOfUserInFirebase,
+    saveDataOfPostINFirebaseFirestore,
     db,
     doc,
     collection,
