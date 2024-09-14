@@ -15,7 +15,7 @@ onAuthStateChanged(auth, (user) => {
     
     const uemail = makeUserName(user.email);
     const userName = document.getElementsByClassName("userName")
-    userName[0].innerHTML = UEMAIL;
+    userName[0].textContent = UEMAIL;
 
     UID = uid;
     UEMAIL = uemail;
