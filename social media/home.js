@@ -1,7 +1,7 @@
 import { auth, onAuthStateChanged, logoutButton, saveDataOfPostINFirebaseFirestore, db, doc, collection, getDoc, onSnapshot, serverTimestamp, query, orderBy, storage, ref, uploadBytesResumable, getDownloadURL, } from "../firebase.js";
 
 let UID;
-let UEMAIL;
+let UNAME;
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -9,16 +9,20 @@ onAuthStateChanged(auth, (user) => {
     const uid = user.uid;
     const makeUserName = (email) => {
       const userNameFromEmail = email.split('@')[0];
-      const userName = userNameFromEmail[0].toUpperCase() + userNameFromEmail.slice(1).toLowerCase();
-      return userName;
+      const name = userNameFromEmail[0].toUpperCase() + userNameFromEmail.slice(1).toLowerCase();
+      return name;
     }
+
+    const uname = makeUserName(user.email);
     
-    const uemail = makeUserName(user.email);
-    const userName = document.getElementsByClassName("userName")
-    userName[0].textContent = UEMAIL;
 
     UID = uid;
-    UEMAIL = uemail;
+    UNAME = uname;
+    
+    const userName = document.getElementsByClassName("userName")
+    userName[0].textContent = UNAME;
+
+    
 
     // --------------------------User name------------------------------------------------
 
@@ -44,7 +48,7 @@ document.getElementById('logoutButton').addEventListener('click', async (e) => {
 // --------------------------Upload image in firebase storage------------------------
 const uploadImageToFirebaseStorage = (file) => {
   return new Promise((resolve, reject) => {
-    const storageRef = ref(storage, `images/${UEMAIL}`);
+    const storageRef = ref(storage, `images/${UNAME}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
     uploadTask.on('state_changed',
       (snapshot) => {
@@ -85,7 +89,7 @@ fileOfImage.addEventListener('change', async (e) => {
 document.getElementById('postButton').addEventListener('click', async () => {
   try {
     const postTextArea = document.getElementById('postTextArea');
-    await saveDataOfPostINFirebaseFirestore('post', { timeStamp: serverTimestamp(), Text: postTextArea.value, name: UEMAIL, postPhoto: url });
+    await saveDataOfPostINFirebaseFirestore('post', { timeStamp: serverTimestamp(), Text: postTextArea.value, name: UNAME, postPhoto: url });
     postTextArea.value = ""
   }
   catch (error) {
@@ -123,10 +127,3 @@ const getDataOfAllpostFromFirebaseFirestore = async () => {
 setTimeout(() => {
   getDataOfAllpostFromFirebaseFirestore();
 }, 5000)
-
-
-
-
-
-
-
